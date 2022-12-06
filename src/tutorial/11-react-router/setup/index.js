@@ -1,16 +1,28 @@
-import React from 'react';
+import React from "react";
 // react router
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+//import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 // pages
-import Home from './Home';
-import About from './About';
-import People from './People';
-import Error from './Error';
-import Person from './Person';
-// navbar
-import Navbar from './Navbar';
+import Home from "./Home";
+import About from "./pages/About";
+import People from "./People";
+import Error from "./pages/Error";
+import SharedLayout from "./pages/SharedLayout";
+
 const ReactRouterSetup = () => {
-  return <h2>react router</h2>;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<Home />} />
+          <Route path="about" element={<About />} />
+          <Route path="people" element={<People />} />
+          <Route path="*" element={<Error />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
 };
 
 export default ReactRouterSetup;
