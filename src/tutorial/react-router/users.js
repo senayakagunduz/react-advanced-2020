@@ -1,25 +1,23 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import {useEffect,useState} from "react";
+import { useEffect, useState } from "react";
 import axios from 'axios';
 function Users() {
-    const [users,setUsers]=useState([]);
-    const[loading,setLoading]=useState(false);
-    useEffect(()=>{
+    const [users, setUsers] = useState([]);
+    const [loading, setLoading] = useState(false);
+    useEffect(() => {
         axios("https://jsonplaceholder.typicode.com/users")
-        .then((response)=>setUsers(response.data))
-        .then((e)=>console.log(e))
-        .finally(setLoading(false))
-    },[]);
-    
+            .then((response) => setUsers(response.data))
+            .then((e) => console.log(e))
+            .finally(setLoading(false))
+    }, []);
     return (
         <div>
-            <h3>{loading && <div>Loading...</div>}</h3>
             <h2>Users</h2>
-            
+            <h3>{loading && <div>Loading...</div>}</h3>
             <ul>
                 {//mapleyerek users listesini bastırdık.her userın üstüne tıklayınca id si görünüyor.
-                    users.map((user)=>(
+                    users.map((user) => (
                         <li key={user.id}>
                             <Link to={`/user/${user.id}`}>{user.name}</Link>
                         </li>
