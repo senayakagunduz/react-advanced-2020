@@ -1,27 +1,21 @@
 import React, { useState } from "react";
 
 const UseStateObject = () => {
-  const [person, setPerson] = useState({
-    namee: "Beyza",
-    age: "5",
-    message: "I love you",
-  });
-  const [name, setName] = useState("Ayşe");
-  const [age, setAge] = useState(8);
-  const [message, setMessage] = useState("Me too");
-  const changeMessage = () => {
-    // setPerson({ ...person, message: "I Love my mom" });
-    setMessage("I love you mom too");
-  };
+const [person,setPerson]=useState({
+  namee:"Beyza",
+  age:6,
+  message:"random message!"
+})
+const changeMessage=()=>{
+  //mesaj haricinde diğer verilerin de kalması için ...person demeliyiz.
+  setPerson({...person,message:"hello world"});
+}
   return (
     <>
-      <h2>{name}</h2>
-      <h3>{age}</h3>
-      <h2>{message}</h2>
-
-      <div className="btn" onClick={changeMessage}>
-        Change Message
-      </div>
+      <div>{person.namee}</div>
+      <div>{person.age}</div>
+      <div>{person.message}</div>
+      <button className="btn" onClick={changeMessage}>{changeMessage}</button>
     </>
   );
 };

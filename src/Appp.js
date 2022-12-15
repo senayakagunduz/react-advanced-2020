@@ -2,12 +2,14 @@ import React from "react";
 import Home from "./tutorial/react-router/home";
 import About from "./tutorial/react-router/about";
 import Users from "./tutorial/react-router/users";
-import User from "./tutorial/react-router/user";
+import Error404 from "./tutorial/react-router/error404";
+import "./tutorial/react-router/Appp.css" 
+//import User from "./tutorial/react-router/user";
 import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link
+    NavLink
 } from "react-router-dom";
 
 export default function Appp() {
@@ -16,9 +18,12 @@ export default function Appp() {
             <div>
                 <nav>
                     <ul>
-                        <li><Link to="/">Home</Link></li>
-                        <li><Link to="/about">About</Link></li>
-                        <li><Link to="/users">Users</Link></li>
+                        <li><NavLink to="/" exact activeStyle={{
+                            fontWeight: "bold",
+                            color: "red"
+                        }} activeClassName="selected">Home</NavLink></li>
+                        <li><NavLink to="/about" activeClassName="selected">About</NavLink></li>
+                        <li><NavLink to="/users" activeClassName="selected">Users</NavLink></li>
                     </ul>
                 </nav>
                 {/* A <Switch> looks through its children <Route>s and
@@ -26,18 +31,13 @@ export default function Appp() {
                 <Switch>
                     {/*ya exact koymalıyız ya da home u en alta koymalıyız
                      react-dom v5 de, yoksa hata alıyoruz.*/}
-                    <Route path="/" exact component={Home}>
-                        <Home />
-                    </Route>
-                    <Route path="/about" component={About}>
-                        <About />
-                    </Route>
-                    <Route path="/users" component={Users}>
-                        <Users />
-                    </Route>
-                    <Route path="/user/:id" component={User}>
+                    <Route path="/" exact component={Home}/>
+                    <Route path="/about" component={About}/>    
+                    <Route path="/users" component={Users}/>
+                    <Route path="*" component={Error404}/>
+                    {/* <Route path="/user/:id" component={User}>
                         <User />
-                    </Route>
+                    </Route> */}
                 </Switch>
             </div>
         </Router>

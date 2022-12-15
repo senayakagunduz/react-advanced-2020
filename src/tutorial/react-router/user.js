@@ -27,7 +27,7 @@ function User() {
       {!isLoading && <code>{JSON.stringify(user)}</code>}
       {/* id:{id} */}
       {/* <button onClick={()=>setUser()}>Next User</button> */}
-      <Link to={`/user/${parseInt(id)+1}`}>Next User({parseInt(id)+1})</Link>
+      <Link to={`/users/${parseInt(id)+1}`}>Next User({parseInt(id)+1})</Link>
       {/* <button onClick={()=>removeItem(id)}>remove</button>*/}
     </div>
 

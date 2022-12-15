@@ -1,10 +1,14 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink, Route, Switch } from 'react-router-dom'
 import { useEffect, useState } from "react";
+import { useRouteMatch } from 'react-router-dom';
 import axios from 'axios';
+import User from './user';
+
 function Users() {
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(false);
+    const { path, url } = useRouteMatch();
     useEffect(() => {
         axios("https://jsonplaceholder.typicode.com/users")
             .then((response) => setUsers(response.data))
@@ -19,7 +23,7 @@ function Users() {
                 {//mapleyerek users listesini bastırdık.her userın üstüne tıklayınca id si görünüyor.
                     users.map((user) => (
                         <li key={user.id}>
-                            <Link to={`/user/${user.id}`}>{user.name}</Link>
+                            <NavLink to={`${url}/${user.id}`} activeClassName="selected">{user.name}</NavLink>
                         </li>
                     ))
                 }
@@ -29,6 +33,13 @@ function Users() {
                 <li><Link to="/user/4">User 4</Link></li> */}
 
             </ul>
+            <Switch>
+                <Route exact path={path}>
+                    <h3>Please select a user.</h3>
+                </Route>
+                <Route path={`${path}/:id`} component={User}>
+                </Route>
+            </Switch>
         </div>
     )
 }
